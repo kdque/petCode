@@ -1,18 +1,90 @@
-<div class="agendamentos" id="agendamentos">
-    <h2>Agendamentos</h2>
-    <div class="card">
-        <form>
-            <div class="form-group">
-                <label for="data">Data</label>
-                <input type="date" id="data" class="form-input">
-            </div>
-            <div class="form-group">
-                <label for="hora">Horário</label>
-                <input type="time" id="hora" class="form-input">
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn">Adicionar Agendamento</button>
-            </div>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamentos - Clínica Veterinária</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Link para o arquivo CSS -->
+</head>
+<body>
+    <div class="crud-container">
+        <h2>Gerenciamento de Agendamentos</h2>
+        <!-- Formulário para adicionar/editar agendamentos -->
+        <form id="agendamento-form">
+            <input type="date" id="data" required> <!-- Campo de data -->
+            <input type="time" id="hora" required> <!-- Campo de hora -->
+            <input type="text" id="id-cliente-agendamento" placeholder="ID do Cliente" required> <!-- Campo de ID do cliente -->
+            <input type="text" id="id-animal-agendamento" placeholder="ID do Animal" required> <!-- Campo de ID do animal -->
+            <textarea id="observacoes" placeholder="Observações"></textarea> <!-- Campo de observações -->
+            <button type="submit">Salvar</button> <!-- Botão de submit -->
         </form>
+
+        <!-- Tabela para listar agendamentos -->
+        <table id="agendamentos-table">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Hora</th>
+                    <th>ID do Cliente</th>
+                    <th>ID do Animal</th>
+                    <th>Observações</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dados dos agendamentos serão inseridos aqui via JavaScript -->
+            </tbody>
+        </table>
     </div>
-</div>
+
+    <script>
+        // Simulação de dados (será substituída pelo backend)
+        let agendamentos = [];
+
+        // Função para adicionar/editar agendamento
+        document.getElementById('agendamento-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const data = document.getElementById('data').value;
+            const hora = document.getElementById('hora').value;
+            const idCliente = document.getElementById('id-cliente-agendamento').value;
+            const idAnimal = document.getElementById('id-animal-agendamento').value;
+            const observacoes = document.getElementById('observacoes').value;
+
+            // Adiciona o agendamento à lista
+            agendamentos.push({ data, hora, idCliente, idAnimal, observacoes });
+            atualizarTabelaAgendamentos(); // Atualiza a tabela
+        });
+
+        // Função para atualizar a tabela de agendamentos
+        function atualizarTabelaAgendamentos() {
+            const tbody = document.querySelector('#agendamentos-table tbody');
+            tbody.innerHTML = ''; // Limpa a tabela
+
+            agendamentos.forEach(agendamento => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${agendamento.data}</td>
+                    <td>${agendamento.hora}</td>
+                    <td>${agendamento.idCliente}</td>
+                    <td>${agendamento.idAnimal}</td>
+                    <td>${agendamento.observacoes}</td>
+                    <td>
+                        <button onclick="editarAgendamento('${agendamento.data}')">Editar</button>
+                        <button onclick="excluirAgendamento('${agendamento.data}')">Excluir</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Funções de editar e excluir (serão implementadas no backend)
+        function editarAgendamento(data) {
+            alert(`Editar agendamento: ${data}`);
+        }
+
+        function excluirAgendamento(data) {
+            alert(`Excluir agendamento: ${data}`);
+        }
+    </script>
+</body>
+</html>
