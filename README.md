@@ -4,6 +4,6 @@
 
 🧰 Tecnologias:
 
--    Frontend: HTML/CSS/JS
--    Backend: PHP
+-    Frontend: HTML/CSS
+-    Backend: C#
 -   Banco: MySQL
