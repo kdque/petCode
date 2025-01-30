@@ -93,3 +93,29 @@ button:hover {
 .navbar ul li a:hover {
     text-decoration: underline;
 }
+.dashboard-container {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 40px;
+    background-color: #fff;
+    width: 70%;
+    margin: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.dashboard-container h2 {
+    margin-bottom: 20px;
+}
+
+.links a {
+    display: block;
+    margin: 10px 0;
+    font-size: 16px;
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.links a:hover {
+    color: #45a049;
+}
